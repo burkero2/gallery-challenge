@@ -19,12 +19,13 @@ export class Content extends Component {
         }
     }
     componentDidMount() {
-        setTimeout(() => {
-            this.setState({
-                isLoading: false,
-                posts: posts
-            })
-        }, 2000)
+        // setTimeout(() => {
+        //     this.setState({
+        //         isLoading: false,
+        //         posts: posts
+        //     })
+        // }, 2000)
+        this.fetchImages();
     }
 
 // API BIT (CLASS)
