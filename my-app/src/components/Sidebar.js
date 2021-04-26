@@ -1,14 +1,15 @@
-import React from 'react';
-import css from './css/Sidebar.module.css';
+import React from 'react'
+import css from "./css/Sidebar.module.css"
 
-const Sidebar = () =>  {
+function Sidebar() {
     return (
-    <div className={css.sidebar}>
-        <a href = "#" rel="noreferrer" target = "_blank" alt = "a link">My Photos</a>
-        <a href = "#" rel="noreferrer" target = "_blank" alt = "a link">My Illustrations</a>
-        <a href = "#" rel="noreferrer" target = "_blank" alt = "a link">My Paintings</a>
-    </div>
+        <div className = {css.sidebar}>
+        {/* <div> */}
+            <a href = "#" target= "_blank">My Photos</a>
+            <a href = "#" target= "_blank">My Illustrations</a>
+            <a href = "#" target= "_blank">My Paintings</a>
+        </div>
     )
 }
 
-export default Sidebar;
+export default Sidebar

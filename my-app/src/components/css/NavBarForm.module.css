@@ -39,12 +39,14 @@
 
 .NavBar label {
     color: #4a4a4f;
-    margin: 1px;
+    /* Changed margin */
+    margin-top: 3px;
     padding-right: 10px;
 }
 
 .NavBar input {
-    margin: 1px;
+    /* changed margin*/
+    margin: 1px 10px;
     width: 150px;
     border: 1px solid lightgrey;
     padding: 2px 5px;
@@ -57,9 +59,9 @@
     padding: 0px 10px;
 }
 
-.NavBar #login-form > div{
+/* .NavBar #login-form > div{
     display: inline-block;
-}
+} */
 
 .NavBar button {
     color: #4a4a4f;
