@@ -2,7 +2,8 @@
     display: inline-block;
     width: 80px;
     height: 80px;
-    margin: 20% 35%;
+    /* Changed Margin Top and Bottom */
+    margin: 2% 35%;
   }
   .Loader:after {
     content: " ";
