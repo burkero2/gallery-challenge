@@ -1,52 +1,40 @@
-import React, { Component } from 'react'
+import React, { useState, useEffect } from 'react'
 import {posts} from "../posts.json"
 import css from './css/Content.module.css'
 import PostItem from './PostItem.js'
 import Loader from './Loader.js';
 
 
+function ContentHooks() {
+    const [isLoaded, setIsLoaded] = useState(false);
+    const [fetchedPosts, setFetchedPosts] = useState([]);
 
-export class Content extends Component {
-    constructor(props) {
-        super(props)
-    
-        this.state = {
-            isLoaded: false,
-            posts: [], 
-        }
-    }
-    
-    componentDidMount(){
+    useEffect(() => { 
         setTimeout(() => {
-            this.setState({
-                isLoaded: true,
-                posts: posts,
-            })
+            setIsLoaded(true);
+            setFetchedPosts(posts);
         }, 2000)
-    }
+    }, [])
 
-
-    handleChange = (event) => {
+    const handleChange = (event) => {
         const name = event.target.value
         console.log(name);
         const filteredPosts = posts.filter(post => {
             return post.name.toLowerCase().includes(name)
         })
-        this.setState({
-            posts: filteredPosts,
-        })
+        setFetchedPosts(filteredPosts);
     }
 
-    render() {
-        return (
-            <div className={css.Content}>
+    return (
+        <div className={css.Content}>
+                {/* Test post.json file: {JSON.stringify(posts)} */}
                 
                 <div className = {css.TitleBar}> 
                     <h1>My Photos</h1>
                     <form>
                         <label htmlFor = "searchInput">Search: </label>
                         <input
-                            onChange={(e) => this.handleChange(e)}
+                            onChange={(e) => handleChange(e)}
                             type="text"
                             size="20"
                             id = "searchInput"
@@ -55,14 +43,16 @@ export class Content extends Component {
                     </form> 
                 </div>
                 
-                <h4>posts found: {this.state.posts.length}</h4>
+                <h4>posts found: {fetchedPosts.length}</h4>
 
+            
                 <div className={css.SearchResults}>
 
-                    {this.state.isLoaded ? (
-                        this.state.posts.map(post => {
+                    {isLoaded ? (
+                        // Change to this.state.posts once we add posts to the state
+                        fetchedPosts.map(fetchedPost => {
                             return(
-                                <PostItem key = {post.title} post = {post} />
+                                <PostItem key = {fetchedPost.title} post = {fetchedPost} />
                             )}
                         )
                     ) 
@@ -72,8 +62,7 @@ export class Content extends Component {
                 </div>
                 
             </div>
-        )
-    }
+    )
 }
 
-export default Content
+export default ContentHooks
