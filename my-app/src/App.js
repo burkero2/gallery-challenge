@@ -1,11 +1,14 @@
 import css from './App.module.css';
 import Sidebar from "./components/Sidebar";
-// import NavBarSimple from "./components/NavBarSimple";
+import NavBarSimple from "./components/NavBarSimple";
 import NavBarForm from "./components/NavBarForm";
-// import Content from "./components/Content";
-// import ContentHooks from "./components/ContentHooks";
-// import ContentAPI from "./components/ContentAPI";
-import ContentAPIHooks from "./components/ContentAPIHooks";
+import RenderLists from "./components/1_RenderLists";
+import Content from "./components/3_Content";
+import ComponentLifecycle from "./components/2_ComponentLifecycle";
+import ContentHooks from "./components/4_ContentHooks";
+import ContentAPI from "./components/5_ContentAPI";
+import ContentAPIHooks from "./components/6_ContentAPIHooks";
+import ContentAPIHooksCopy from "./components/6_ContentAPIHooksCopy";
 
 function App() {
   return (
@@ -13,10 +16,13 @@ function App() {
       <NavBarForm />
       {/* <NavBarSimple /> */}
       <Sidebar />
-      {/* <Content /> */}
+      {/* <RenderLists /> */}
+      {/* <ComponentLifecycle /> */}
+      <Content />
       {/* <ContentHooks /> */}
       {/* <ContentAPI /> */}
-      <ContentAPIHooks />
+      {/* <ContentAPIHooks /> */}
+      {/* <ContentAPIHooksCopy /> */}
       
 
     </div>

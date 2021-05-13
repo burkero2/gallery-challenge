@@ -48,7 +48,7 @@ export class NavBarForm extends Component {
                             <input type = "password" id = "password" placeholder = "password" />
 
                             <button  onClick = {() => this.handleClick()}>Submit</button>
-                        </form>
+                        </form> 
                         
                     )}
                 

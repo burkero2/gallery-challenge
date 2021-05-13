@@ -6,14 +6,14 @@ export class NavBarSimple extends Component {
         super(props)
     
         this.state = {
-             name: "guest!",
+             message: "Hello, guest!",
         }
     }
 
     handleClick = () => {
         this.setState((prevState) => ({
-            name: prevState.name === "guest!" ? " back, user!" : "guest!",
-        }), () => console.log(this.state.name))
+            message: prevState.message === "Hello, guest!" ? "Welcome back, user!" : "Hello, guest!",
+        }), () => console.log(this.state.message))
     }
     
     render() {
@@ -21,7 +21,7 @@ export class NavBarSimple extends Component {
             <div className = {css.NavBar}>
                 <h1>My Gallery</h1>
                 <div>
-                    <span>Welcome {this.state.name}</span>
+                    <span>{this.state.message}</span>
                     <button onClick = {() => this.handleClick()}>Log In</button>
                 </div>
             </div>

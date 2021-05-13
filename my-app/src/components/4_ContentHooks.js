@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import {posts} from "../posts.json"
+import {savedPosts} from "../posts.json"
 import css from './css/Content.module.css'
 import PostItem from './PostItem.js'
 import Loader from './Loader.js';
@@ -12,14 +12,14 @@ function ContentHooks() {
     useEffect(() => { 
         setTimeout(() => {
             setIsLoaded(true);
-            setFetchedPosts(posts);
+            setFetchedPosts(savedPosts);
         }, 2000)
     }, [])
 
     const handleChange = (event) => {
         const name = event.target.value
         console.log(name);
-        const filteredPosts = posts.filter(post => {
+        const filteredPosts = savedPosts.filter(post => {
             return post.name.toLowerCase().includes(name)
         })
         setFetchedPosts(filteredPosts);

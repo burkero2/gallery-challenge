@@ -1,42 +1,43 @@
-import React from 'react'
+import React, { Component, useState, useEffect } from 'react'
 import css from './css/Content.module.css'
 import PostItemAPI from './PostItemAPI.js'
 import Loader from './Loader.js';
 import axios from 'axios';
 import API_KEY from '../secrets';
 
+// Change import posts to import {importedPosts}
+export class ContentAPI extends Component {
+    constructor(props) {
+        super(props)
+        this.state = {
+            isLoaded: false,
+            posts: [], 
+            // Add posts when creating the search bar
+            savedPosts: [], 
+        }
+    }
 
-// Step 1: Copy and paste in the Render content from ComponentAPI.js
-// Step 2: Copy and Paste any relevant imports from ComponentAPI.js e.g. import css etc...
-// Step 3: Create the useState hooks for isLoaded and fetchedPosts
-// Step 4: Create the fetchImages function, 
+    componentDidMount(){
+        this.fetchImages();
+    }
 
-
-function ContentAPIHooks() {
-    const [isLoaded, setIsLoaded] = useState(false);
-    const [fetchedPosts, setFetchedPosts] = useState([]);
-
-    useEffect(() => { 
-        fetchedimages();
-    }, [])
-
+    // API BIT (CLASS)
     async fetchImages() {
-        const { data } = await axios.get(`https://pixabay.com/api/?key=${API_KEY}&per_page=100&safesearch=true&editors_choice=true&orientation=horizontal`);
-        const fetchedPosts = data.hits
+        const response = await axios.get(`https://pixabay.com/api/?key=${API_KEY}&per_page=100&safesearch=true&editors_choice=true&orientation=horizontal`);
+        const fetchedPosts = response.data.hits
 
-        // SAVE FETCHED POSTS to the class so that it can be referenced later
-        const savedPosts = fetchedPosts
         
-        // this.setState({
-        //     isLoaded: true,
-        //     posts: fetchedPosts
-        // })
+        this.setState({
+            isLoaded: true,
+            posts: fetchedPosts,
+            savedPosts: fetchedPosts,
+        })
     }
 
     handleChange = (event) => {
         const name = event.target.value
         console.log('name', name);
-        const filteredPosts = savedPosts.filter(post => {
+        const filteredPosts = this.state.savedPosts.filter(post => {
             return post.user.toLowerCase().includes(name)
         })
         this.setState({
@@ -44,8 +45,10 @@ function ContentAPIHooks() {
         })
     }
 
-    return (
-        <div className={css.Content}>
+    render() {
+        return (
+            <div className={css.Content}>
+                {/* Test post.json file: {JSON.stringify(posts)} */}
                 <div className = {css.TitleBar}> 
                     <h1>My Photos</h1>
                     <form>
@@ -59,7 +62,7 @@ function ContentAPIHooks() {
                         />
                     </form> 
                 </div>
-                <h4>posts found: {fetchedPosts.length}</h4>
+                <h4>posts found: {this.state.posts.length}</h4>
                 
                 <div className={css.SearchResults}>
                     {this.state.isLoaded ? (
@@ -76,7 +79,8 @@ function ContentAPIHooks() {
                     )}
                 </div>
             </div>
-    )
+        )
+    }
 }
+export default ContentAPI
 
-export default ContentAPIHooks

@@ -1,10 +1,8 @@
 import React, { Component } from 'react'
-import {posts} from "../posts.json"
 import css from './css/Content.module.css'
+import {savedPosts} from "../posts.json"
 import PostItem from './PostItem.js'
 import Loader from './Loader.js';
-
-
 
 export class Content extends Component {
     constructor(props) {
@@ -20,7 +18,7 @@ export class Content extends Component {
         setTimeout(() => {
             this.setState({
                 isLoaded: true,
-                posts: posts,
+                posts: savedPosts,
             })
         }, 2000)
     }
@@ -29,7 +27,7 @@ export class Content extends Component {
     handleChange = (event) => {
         const name = event.target.value
         console.log(name);
-        const filteredPosts = posts.filter(post => {
+        const filteredPosts = savedPosts.filter(post => {
             return post.name.toLowerCase().includes(name)
         })
         this.setState({
@@ -65,7 +63,7 @@ export class Content extends Component {
                                 <PostItem key = {post.title} post = {post} />
                             )}
                         )
-                    ) 
+                    )
                     : (
                         <Loader />
                     )}
